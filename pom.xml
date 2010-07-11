@@ -1,109 +1,129 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
+
     <groupId>com.soashable.activitystreams</groupId>
     <artifactId>activitystreams-js</artifactId>
     <packaging>javascript</packaging>
-    <version>1.0.0</version>
+	<version>1.0.0-SNAPSHOT</version>
+
     <name>ActivityStrea.ms JS Implementation</name>
-    <url>http://activitystrea.ms</url>
+	<description>A Javascript implementation of activitystrea.ms spec</description>
+    <url>http://github.com/harlanji/activitystreams-js</url>
+	<licenses>
+		<license>
+			<name>MIT</name>
+			<url>MIT-LICENSE.txt</url>
+		</license>
+	</licenses>
+
+
     <dependencies>
     </dependencies>
 
-  <build>
-    <outputDirectory>target/scripts</outputDirectory>
-    <testOutputDirectory>target/test-scripts</testOutputDirectory>
+	<scm>
+        <connection>scm:git:git://github.com/harlanji/activitystreams-js.git</connection>
+		<developerConnection>scm:git:git@github.com:harlanji/activitystreams-js.git</developerConnection>
+        <url>http://github.com/harlanji/activitystreams-js</url>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>harlanji</id>
+			<name>Harlan Iverson</name>
+			<email>h.iverson@gmail.com</email>
+		</developer>
+	</developers>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo.javascript</groupId>
+				<artifactId>javascript-maven-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<sourceDirectory>.</sourceDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
 	
 
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo.javascript</groupId>
-        <artifactId>javascript-maven-plugin</artifactId>
-        <extensions>true</extensions>
-        <executions>
-            <execution>
-                <goals>
-<!--                    <goal>war-package</goal>
-                    <goal>prepare-tests</goal>
-                    <goal>jsunit</goal>
-                    <goal>compress</goal> -->
-                </goals>
-            </execution>
-        </executions>
-		<configuration>
-			<sourceDirectory>.</sourceDirectory>
-		</configuration>
-      </plugin>
-    </plugins>
-  </build>
+<!--
+	<distributionManagement>
+		<repository>
+			<id>jsrepo</id>
+			<url>http://localhost:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>jsrepo</id>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+-->
 
 
-  <repositories>
-    <repository>
-      <id>Codehaus Snapshots</id>
-      <url>http://snapshots.repository.codehaus.org/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>Codehaus Snapshots</id>
-      <url>http://snapshots.repository.codehaus.org/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>  <!-- Workaround for MNG-2974, see note below -->
-      </releases>
-    </pluginRepository>
-  </pluginRepositories>
-
-
-  <distributionManagement>
-    <repository>
-      <id>jsrepo</id>
-      <url>http://localhost:8081/nexus/content/repositories/releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>jsrepo</id>
-      <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-oss-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 
 	<profiles>
+		<profile>
+			<id>release-public</id>
+		
+			<distributionManagement>
+				<repository>
+					<id>sonatype-nexus-releases</id>
+					<url>https://oss.sonatype.org/content/repositories/releases/</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+
+		<profile>
+			<id>release-staging</id>
+		
+			<distributionManagement>
+				<repository>
+					<id>sonatype-oss-staging</id>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
+			</distributionManagement>
+		</profile>
 
 		<profile>
 			<id>release-sign-artifacts</id>
-			  <activation>
+			<activation>
 				<property>
-				  <name>performRelease</name>
-				  <value>true</value>
+				<name>performRelease</name>
+					<value>true</value>
 				</property>
-			  </activation>
+			</activation>
 
-			  <build>
+			<build>
 				<plugins>
-				  <plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-gpg-plugin</artifactId>
-					<executions>
-					  <execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-						  <goal>sign</goal>
-						</goals>
-					  </execution>
-					</executions>
-				  </plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
 				</plugins>
-			  </build>
+			</build>
 		</profile>
 	</profiles>
 
