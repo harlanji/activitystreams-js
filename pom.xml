@@ -43,7 +43,6 @@
 				<artifactId>javascript-maven-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
-					<sourceDirectory>.</sourceDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
