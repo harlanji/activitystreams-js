@@ -39,30 +39,63 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo.javascript</groupId>
+				<groupId>com.devspan.mojo.javascript</groupId>
 				<artifactId>javascript-maven-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
+					<workDirectory>${basedir}/target/test-work</workDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
-
-	
-
-<!--
-	<distributionManagement>
+	<repositories>
 		<repository>
-			<id>jsrepo</id>
-			<url>http://localhost:8081/nexus/content/repositories/releases</url>
+			<id>sonatype-nexus-public</id>
+			<url>https://oss.sonatype.org/content/groups/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
 		</repository>
-		<snapshotRepository>
-			<id>jsrepo</id>
-			<url>http://localhost:8081/nexus/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
--->
+
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype-nexus-public</id>
+			<url>https://oss.sonatype.org/content/groups/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+
+		<pluginRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
 
 
 	<distributionManagement>
@@ -75,28 +108,6 @@
 
 	<profiles>
 		<profile>
-			<id>release-public</id>
-		
-			<distributionManagement>
-				<repository>
-					<id>sonatype-nexus-releases</id>
-					<url>https://oss.sonatype.org/content/repositories/releases/</url>
-				</repository>
-			</distributionManagement>
-		</profile>
-
-		<profile>
-			<id>release-staging</id>
-		
-			<distributionManagement>
-				<repository>
-					<id>sonatype-oss-staging</id>
-					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-				</repository>
-			</distributionManagement>
-		</profile>
-
-		<profile>
 			<id>release-sign-artifacts</id>
 			<activation>
 				<property>
@@ -104,6 +115,13 @@
 					<value>true</value>
 				</property>
 			</activation>
+
+			<distributionManagement>
+				<repository>
+					<id>sonatype-oss-staging</id>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
+			</distributionManagement>
 
 			<build>
 				<plugins>
