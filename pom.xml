@@ -5,11 +5,19 @@
     <groupId>com.soashable.activitystreams</groupId>
     <artifactId>activitystreams-js</artifactId>
     <packaging>javascript</packaging>
+
 	<version>1.0.1-SNAPSHOT</version>
+
+	<parent>
+		<groupId>com.devspan.mojo.javascript</groupId>
+		<artifactId>javascript-project</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
 
     <name>ActivityStrea.ms JS Implementation</name>
 	<description>A Javascript implementation of activitystrea.ms spec</description>
     <url>http://github.com/harlanji/activitystreams-js</url>
+
 	<licenses>
 		<license>
 			<name>MIT</name>
@@ -34,126 +42,5 @@
 			<email>h.iverson@gmail.com</email>
 		</developer>
 	</developers>
-
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.devspan.mojo.javascript</groupId>
-				<artifactId>javascript-maven-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.devspan.mojo.javascript</groupId>
-				<artifactId>javascript-report-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</reporting>
-
-
-	<repositories>
-		<repository>
-			<id>sonatype-nexus-public</id>
-			<url>https://oss.sonatype.org/content/groups/public</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
-
-		<repository>
-			<id>sonatype-nexus-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>sonatype-nexus-public</id>
-			<url>https://oss.sonatype.org/content/groups/public</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</pluginRepository>
-
-		<pluginRepository>
-			<id>sonatype-nexus-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</pluginRepository>
-	</pluginRepositories>
-
-
-	<distributionManagement>
-		<snapshotRepository>
-			<id>sonatype-oss-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
-
-
-	<profiles>
-		<profile>
-			<id>release-sign-artifacts</id>
-			<activation>
-				<property>
-				<name>performRelease</name>
-					<value>true</value>
-				</property>
-			</activation>
-
-			<distributionManagement>
-				<repository>
-					<id>sonatype-oss-staging</id>
-					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-				</repository>
-			</distributionManagement>
-
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 
 </project>
