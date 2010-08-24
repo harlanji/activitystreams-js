@@ -43,11 +43,24 @@
 				<artifactId>javascript-maven-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
-					<workDirectory>${basedir}/target/test-work</workDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.devspan.mojo.javascript</groupId>
+				<artifactId>javascript-report-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
+
 
 	<repositories>
 		<repository>
