@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    
+<modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.soashable.activitystreams</groupId>
-    <artifactId>activitystreams-js</artifactId>
-    <packaging>javascript</packaging>
+
+	<groupId>com.soashable.activitystreams</groupId>
+	<artifactId>activitystreams-js</artifactId>
+	<packaging>javascript</packaging>
 
 	<version>1.0.1-SNAPSHOT</version>
 
@@ -14,9 +14,9 @@
 		<version>0.9.1</version>
 	</parent>
 
-    <name>ActivityStrea.ms JS Implementation</name>
+	<name>ActivityStrea.ms JS Implementation</name>
 	<description>A Javascript implementation of activitystrea.ms spec</description>
-    <url>http://github.com/harlanji/activitystreams-js</url>
+	<url>http://github.com/harlanji/activitystreams-js</url>
 
 	<licenses>
 		<license>
@@ -26,13 +26,13 @@
 	</licenses>
 
 
-    <dependencies>
-    </dependencies>
+	<dependencies>
+	</dependencies>
 
 	<scm>
-        <connection>scm:git:git://github.com/harlanji/activitystreams-js.git</connection>
+		<connection>scm:git:git://github.com/harlanji/activitystreams-js.git</connection>
 		<developerConnection>scm:git:git://github.com/harlanji/activitystreams-js.git</developerConnection>
-        <url>http://github.com/harlanji/activitystreams-js</url>
+		<url>http://github.com/harlanji/activitystreams-js</url>
 	</scm>
 
 	<developers>
