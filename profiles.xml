@@ -1,0 +1,104 @@
+<profilesXml>
+	<profiles>
+
+
+<!--
+****************************************************************************
+-->
+
+		<profile>
+			<id>js-development</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+
+			<repositories>
+				<repository>
+					<id>sonatype-nexus-public</id>
+					<url>https://oss.sonatype.org/content/groups/public</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</repository>
+
+				<repository>
+					<id>sonatype-nexus-snapshots</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+				</repository>
+			</repositories>
+
+			<pluginRepositories>
+				<pluginRepository>
+					<id>sonatype-nexus-public</id>
+					<url>https://oss.sonatype.org/content/groups/public</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</pluginRepository>
+
+				<pluginRepository>
+					<id>sonatype-nexus-snapshots</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+
+
+
+
+		<profile>
+			<id>js-staging</id>
+
+			<pluginRepositories>
+				<pluginRepository>
+					<id>sonatype-nexus-staging</id>
+					<url>https://oss.sonatype.org/content/groups/staging</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</pluginRepository>
+			</pluginRepositories>
+
+			<repositories>
+				<repository>
+					<id>sonatype-nexus-staging</id>
+					<url>https://oss.sonatype.org/content/groups/staging</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</repository>
+			</repositories>
+		</profile>
+
+
+<!--
+****************************************************************************
+-->
+
+	</profiles>
+</profilesXml>

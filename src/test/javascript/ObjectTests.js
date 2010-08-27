@@ -48,8 +48,6 @@ jQuery(document).ready(function() {
 			'photo' : 'http://example.com/photo.jpg'
 		});
 
-		print( toString(photoNode) );
-
 		equals( toString(photoNode), '<object xmlns="http://activitystrea.ms/spec/1.0/"><object-type xmlns="http://activitystrea.ms/spec/1.0/">http://onesocialweb.org/spec/1.0/object/photo</object-type><link href="http://example.com/photo.jpg" xmlns="http://www.w3.org/1999/xhtml" rel="photo rel"/></object>' );
 
 	});
