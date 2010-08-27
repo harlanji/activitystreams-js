@@ -4,8 +4,21 @@
 <head>
   <link rel="stylesheet" href="http://github.com/jquery/qunit/raw/master/qunit/qunit.css" type="text/css" media="screen" />
 
+	<!-- dependencies -->
+	<script type="text/javascript" src="lib/qunit/qunit.js"></script>	
+	<script type="text/javascript" src="lib/jquery/jquery.js"></script>
+	<script type="text/javascript" src="lib/jquery-xmlns/jquery.xmlns.js"></script>
+	<script type="text/javascript" src="lib/strophejs/strophe.js"></script>
 
-  
+	<!-- application -->
+  	<script type="text/javascript" src="activitystreams.js"></script>
+
+	<!-- utils and tests -->
+	<script type="text/javascript" src="test-utils.js"></script>
+
+	<script type="text/javascript" src="ObjectTests.js"></script>
+	<script type="text/javascript" src="ActivityTests.js"></script>
+
 </head>
 <body>
   <h1 id="qunit-header">QUnit example</h1>
@@ -14,18 +27,6 @@
  <ol id="qunit-tests"></ol>
  <div id="qunit-fixture">test markup, will be hidden</div>
 
-  <script>
-
-module("Some Module");
-
-test("a basic test example", function() {
-  ok( true, "this test is fine" );
-  var value = "hello";
-  equals( "hello", value, "We expect value to be hello" );
-});
-
-
-  </script>
 
 </body>
 </html>

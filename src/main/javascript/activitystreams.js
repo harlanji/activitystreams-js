@@ -1,4 +1,6 @@
-(function($activity) {
+
+$activity = {};
+
 
 
 $activity.NS = {
@@ -58,7 +60,7 @@ $activity.parse = function(entryNode) {
 
 	return activity;
 
-}
+};
 
 	/*
 	Function: $activity.create
@@ -91,7 +93,7 @@ $activity.create = function(title, children) {
 	}
 
 	return builder.tree();
-}
+};
 
 
 
@@ -141,54 +143,64 @@ $activity.object = {
 		$activity.object[ options.type ] = options.createFn;
 	}
 
-}
+};
+
+(function() {
+
+	var info = {
+		'type' : 'status',
+
+		'ns' : 'http://onesocialweb.org/spec/1.0/object/status',
+
+		'createFn' : function(fields) {
+			// this could include text/html and other formats. for now, just text.
+			fields.contentType = fields.contentType || 'text/plain';
+
+			return $build('object', {'xmlns': $activity.NS.activity})
+				.c('object-type', {'xmlns': $activity.NS.activity})
+					.t(info.ns).up()
+				.c('content', {xmlns: $activity.NS.atom, type: fields.contentType})
+					.t( fields.status ).up()
+				.tree();
+		},
+
+		'parseFn' : function(objectNode, obj) {
+			obj.status = $(objectNode).find("atom|content").text();
+			obj.contentType = $(objectNode).find("atom|content").attr("type") || "text/plain";
+		}
+	};
+
+	$activity.object.addType(info);
+
+})();
+
+(function() {
+
+	var info = {
+		'type' : 'photo',
+
+		'ns' : 'http://onesocialweb.org/spec/1.0/object/photo',
+
+		'createFn' : function(fields) {
+			fields.rel = fields.rel || 'alternate';
+
+			return $build('object', {'xmlns': $activity.NS.activity})
+				.c('object-type', {'xmlns': $activity.NS.activity})
+					.t(info.ns).up()
+				.c('link', {'xmlns': $activity.NS.xhtml, 'rel': fields.rel, 'href' : fields.photo}).up()
+				.tree();
+		},
+
+		'parseFn' : function(objectNode, obj) {
+			var linkNode = $(objectNode).find("xhtml|link");
+			obj.rel = linkNode.attr("rel") || "alternate";
+			obj.photo = linkNode.attr("href");
+		}
+	};
+
+	$activity.object.addType(info);
+
+})();
 
 
-
-
-$activity.object.addType({
-	'type' : 'status',
-
-	'ns' : 'http://onesocialweb.org/spec/1.0/object/status',
-
-	'createFn' : function(fields) {
-		// this could include text/html and other formats. for now, just text.
-		fields.contentType = fields.contentType || 'text/plain';
-
-		return $build('object', {'xmlns': $activity.NS.activity})
-			.c('object-type', {'xmlns': $activity.NS.activity})
-				.t($activity.object.type.status).up()
-			.c('content', {xmlns: $activity.NS.atom,type: contentType})
-				.t( fields.status ).up()
-			.tree();
-	},
-
-	'parseFn' : function(objectNode, obj) {
-		obj.status = $(objectNode).find("atom|content").text();
-	}
-});
-
-$activity.object.addType({
-	'type' : 'photo',
-
-	'ns' : 'http://onesocialweb.org/spec/1.0/object/photo',
-
-	'createFn' : function(builder, fields) {
-		fields.rel = fields.rel || 'alternate';
-
-		return $build('object', {'xmlns': $activity.NS.activity})
-			.c('object-type', {'xmlns': $activity.NS.activity})
-				.t($activity.object.type.picture).up()
-			.c('link', {'xmlns': $activity.NS.xhtml, 'rel': fields.rel, 'href' : fields.photo}).up()
-			.tree();
-	},
-
-	'parseFn' : function(objectNode, obj) {
-		obj.photo = $(objectNode).find("atom|link[rel='alternate']").attr("href");
-	}
-});
-
-
-
-})(window.$activity = {});
 
