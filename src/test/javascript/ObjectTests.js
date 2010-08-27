@@ -67,4 +67,16 @@ jQuery(document).ready(function() {
 		equals( obj.published, "2003-12-13T18:30:02Z" );
 	});
 
+	test("Photo: Parse - All fields missing (no errors)", function() {
+
+		var photoNode = toDom('<object xmlns="http://activitystrea.ms/spec/1.0/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xhtml="http://www.w3.org/1999/xhtml"><object-type xmlns="http://activitystrea.ms/spec/1.0/">http://onesocialweb.org/spec/1.0/object/photo</object-type></object>');
+
+		var obj = $activity.object.parse( photoNode );
+
+		equals( obj.objectType, "http://onesocialweb.org/spec/1.0/object/photo" );		
+		equals( obj.photo, "" );
+		equals( obj.rel, "alternate" );
+		equals( obj.published, "" );
+	});
+
 });

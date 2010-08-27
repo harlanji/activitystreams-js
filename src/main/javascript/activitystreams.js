@@ -36,7 +36,7 @@ Returns:
 $activity.parse = function(entryNode) {
 	var activity;
 
-	$(entryNode).xmlns( $activity.NS, function() {
+	jQuery(entryNode).xmlns( $activity.NS, function() {
 	
 		activity = {
 			'id' : this.find("atom|id").text(),
@@ -124,7 +124,7 @@ $activity.object = {
 	*/
 	'parse' : function(entryNode) {
 		var obj;
-		$(entryNode).xmlns( $activity.NS, function() {
+		jQuery(entryNode).xmlns( $activity.NS, function() {
 			obj = {
 				'id': this.find("id").text(),
 				'published': this.find("atom|published").text(),
@@ -165,8 +165,8 @@ $activity.object = {
 		},
 
 		'parseFn' : function(objectNode, obj) {
-			obj.status = $(objectNode).find("atom|content").text();
-			obj.contentType = $(objectNode).find("atom|content").attr("type") || "text/plain";
+			obj.status = jQuery(objectNode).find("atom|content").text();
+			obj.contentType = jQuery(objectNode).find("atom|content").attr("type") || "text/plain";
 		}
 	};
 
@@ -192,9 +192,14 @@ $activity.object = {
 		},
 
 		'parseFn' : function(objectNode, obj) {
-			var linkNode = $(objectNode).find("xhtml|link");
-			obj.rel = linkNode.attr("rel") || "alternate";
-			obj.photo = linkNode.attr("href");
+			var linkNode = jQuery(objectNode).find("xhtml|link");
+			if( linkNode.length ) {
+				obj.rel = linkNode.attr("rel") || "alternate";
+				obj.photo = linkNode.attr("href");
+			} else {
+				obj.rel = "alternate";
+				obj.photo = "";
+			}
 		}
 	};
 
