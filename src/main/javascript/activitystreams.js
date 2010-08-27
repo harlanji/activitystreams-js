@@ -54,7 +54,7 @@ $activity.parse = function(entryNode) {
 */
 			'objects' : this.find("activity|object").map(function() { 
 				return $activity.object.parse( this );
-			}),
+			}) || [],
 		};
 	});
 
