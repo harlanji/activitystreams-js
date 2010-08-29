@@ -25,18 +25,6 @@
 		</license>
 	</licenses>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.devspan.mojo.javascript</groupId>
-				<artifactId>javascript-maven-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
 
 	<dependencies>
 		<dependency>
